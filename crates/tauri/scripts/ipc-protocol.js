@@ -87,7 +87,9 @@
     }
   }
 
-  Object.defineProperty(window.__TAURI_INTERNALS__, 'postMessage', {
-    value: sendIpcMessage
-  })
+  if (!Object.getOwnPropertyDescriptor(window.__TAURI_INTERNALS__, 'postMessage')) {
+    Object.defineProperty(window.__TAURI_INTERNALS__, 'postMessage', {
+      value: sendIpcMessage
+    });
+  }
 })()
